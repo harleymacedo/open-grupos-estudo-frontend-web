@@ -1,13 +1,12 @@
 import './App.css';
 import Grupo from './components/Grupo';
+import Header from './components/Header';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <p>Sistema de Gerenciamento de Grupos de Estudo</p>
-      <p>Instância IFCE Campus Crato</p>
 
-      <Grupo />
+      <Header />
 
     </div>
   );
