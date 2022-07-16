@@ -4,10 +4,6 @@ import './styles.css';
 export default () => {
 
     const [grupos, setGrupos] = useState([{"nome": "nome1"}, {"nome": "nome2"}]);
-
-    useEffect( () => {
-         obterGrupos();
-    }, [] )
     
     const obterGrupos = async () => {
         const result = await fetch('https://open-grupos-de-estudo-backend.herokuapp.com/grupo');
