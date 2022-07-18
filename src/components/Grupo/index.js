@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Grupo = () => {
 
-    const [grupos, setGrupos] = useState([{"nome": "nome1"}, {"nome": "nome2"}]);
+    const [grupos, setGrupos] = useState([]);
     
     const obterGrupos = async () => {
-        const result = await fetch('https://open-grupos-de-estudo-backend.herokuapp.com/grupo');
         console.log("Chamou obterGrupos");
-        setGrupos(...grupos, result);
+        const result = await axios.get('https://open-grupos-de-estudo-backend.herokuapp.com/grupo');
+        if (result) {
+            console.log(result);
+            setGrupos(result);
+        }
     }
 
     useEffect( () => {
         obterGrupos();
-    }, [grupos] );
+    }, [] );
 
     return (
         <div className='container'>
@@ -22,16 +26,15 @@ const Grupo = () => {
 
             <Link to='/' >Logout</Link>
 
-            {/* <div>
-                { grupos.map( (value, index) => {
+            <div>
+                { grupos.map( (item, key) => {
                     return (
-                        <div>
-                            <p>Item atual</p>
-                            <p> { value } </p>
+                        <div key={key}>
+                            <p> { item.nome } </p>
                         </div>
                     );
                 }) }
-            </div> */}
+            </div>
 
         </div>
     )
