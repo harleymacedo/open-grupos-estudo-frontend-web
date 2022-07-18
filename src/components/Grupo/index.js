@@ -12,7 +12,7 @@ const Grupo = () => {
         const result = await axios.get('https://open-grupos-de-estudo-backend.herokuapp.com/grupo');
         if (result) {
             console.log(result);
-            setGrupos(result);
+            setGrupos(result.data);
         }
     }
 
