@@ -9,7 +9,7 @@ const Grupo = () => {
     
     const obterGrupos = async () => {
         console.log("Chamou obterGrupos");
-        const result = await axios.get('https://open-grupos-de-estudo-backend.herokuapp.com/grupo');
+        const result = await axios.get('https://open-grupos-estudo-backend.herokuapp.com/grupo');
         if (result) {
             console.log(result);
             setGrupos(result.data);
