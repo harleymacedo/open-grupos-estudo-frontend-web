@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
-export default () => {
+const Grupo = () => {
 
     const [grupos, setGrupos] = useState([{"nome": "nome1"}, {"nome": "nome2"}]);
     
@@ -11,11 +12,17 @@ export default () => {
         setGrupos(...grupos, result);
     }
 
+    useEffect( () => {
+        obterGrupos();
+    }, [grupos] );
+
     return (
         <div className='container'>
             <p>Tela de Grupos</p>
 
-            <div>
+            <Link to='/' >Logout</Link>
+
+            {/* <div>
                 { grupos.map( (value, index) => {
                     return (
                         <div>
@@ -24,8 +31,10 @@ export default () => {
                         </div>
                     );
                 }) }
-            </div>
+            </div> */}
 
         </div>
     )
 }
+
+export default Grupo;

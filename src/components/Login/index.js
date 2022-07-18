@@ -18,7 +18,7 @@ const Login = () => {
             <nav>
                 <ul>
                     <li>
-                        {/* <Link to='/grupo' > Grupos </Link> */}
+                        <Link to='/grupo' > Grupos </Link>
                     </li>
                 </ul>
             </nav>
