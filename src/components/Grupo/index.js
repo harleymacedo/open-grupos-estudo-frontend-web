@@ -8,10 +8,8 @@ const Grupo = () => {
     const [grupos, setGrupos] = useState([]);
     
     const obterGrupos = async () => {
-        console.log("Chamou obterGrupos");
         const result = await axios.get('https://open-grupos-estudo-backend.herokuapp.com/grupo');
         if (result) {
-            console.log(result);
             setGrupos(result.data);
         }
     }
@@ -29,8 +27,9 @@ const Grupo = () => {
             <div>
                 { grupos.map( (item, key) => {
                     return (
-                        <div key={key}>
+                        <div key={key} className='card-grupo'>
                             <p> { item.nome } </p>
+                            <p> { item.descricao } </p>
                         </div>
                     );
                 }) }
