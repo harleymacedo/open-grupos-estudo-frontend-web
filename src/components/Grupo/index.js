@@ -27,7 +27,8 @@ const Grupo = () => {
             <div>
                 { grupos.map( (item, key) => {
                     return (
-                        <div key={key} className='card-grupo'>
+                        <div key={key} className='card--grupo'>
+                            <p> Grupo </p>
                             <p> { item.nome } </p>
                             <p> { item.descricao } </p>
                         </div>

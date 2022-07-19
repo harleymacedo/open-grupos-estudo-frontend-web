@@ -15,13 +15,7 @@ const Login = () => {
             <input type='text' placeholder='Email' className='input--login'/>
             <input type='password' placeholder='Senha' className='input--login' />
             <input type='button' value='Entrar' className='input--login input--button' /> 
-            <nav>
-                <ul>
-                    <li>
-                        <Link to='/grupo' > Grupos </Link>
-                    </li>
-                </ul>
-            </nav>
+                <Link to='/grupo' > Grupos </Link>               
             <div className='login--links'>
                 <a href='/grupo'>Cadastro</a>
                 <a href='localhost:3000/grupo'>Esquecia a senha</a>
