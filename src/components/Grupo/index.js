@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 import axios from 'axios';
 
 const Grupo = () => {
@@ -27,11 +28,13 @@ const Grupo = () => {
             <div>
                 { grupos.map( (item, key) => {
                     return (
-                        <div key={key} className='card--grupo'>
-                            <p> Grupo </p>
-                            <p> { item.nome } </p>
-                            <p> { item.descricao } </p>
-                        </div>
+                        <Card>
+                            <div key={key}>
+                                <p> Grupo </p>
+                                <p> { item.nome } </p>
+                                <p> { item.descricao } </p>
+                            </div>
+                        </Card>
                     );
                 }) }
             </div>
