@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card } from '@mui/material';
 import axios from 'axios';
 
 const Grupo = () => {
@@ -28,12 +28,13 @@ const Grupo = () => {
             <div>
                 { grupos.map( (item, key) => {
                     return (
-                        <Card>
+                        <Card variant='outlined' style={{backgroundColor: 'silver', margin: 20, width: 300}}>
                             <div key={key}>
-                                <p> Grupo </p>
+                                <p style={{fontSize: 22}}> Grupo </p>
                                 <p> { item.nome } </p>
                                 <p> { item.descricao } </p>
                             </div>
+                            
                         </Card>
                     );
                 }) }

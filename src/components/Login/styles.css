@@ -10,11 +10,6 @@
     justify-content: center;
     color: white;
 }
-
-.input--form {
-    margin-bottom: 20px;
-    background-color: azure;
-}
 .login--links {
     font-size: 10pt;
     display: flex;
