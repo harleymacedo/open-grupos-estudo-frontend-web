@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
-import { Link } from 'react-router-dom';
-import { Card } from '@mui/material';
+import { Card, Button } from '@mui/material';
 import axios from 'axios';
 
 const Grupo = () => {
@@ -21,9 +20,9 @@ const Grupo = () => {
 
     return (
         <div className='container'>
-            <p>Tela de Grupos</p>
+            <p style={{fontSize: 28}} >Tela de Grupos</p>
 
-            <Link to='/' >Logout</Link>
+            <Button href='/' variant='contained' color='secondary' >Logout</Button>
 
             <div>
                 { grupos.map( (item, key) => {
@@ -31,8 +30,8 @@ const Grupo = () => {
                         <Card variant='outlined' style={{backgroundColor: 'silver', margin: 20, width: 300}}>
                             <div key={key}>
                                 <p style={{fontSize: 22}}> Grupo </p>
-                                <p> { item.nome } </p>
-                                <p> { item.descricao } </p>
+                                <p> Nome: { item.nome } </p>
+                                <p> Descrição: { item.descricao } </p>
                             </div>
                             
                         </Card>
