@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { Card, Button } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import EditIcon from '@mui/icons-material/Edit';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+
 import axios from 'axios';
 
 const Grupo = () => {
@@ -22,8 +28,9 @@ const Grupo = () => {
         <div className='container'>
             <p style={{fontSize: 28}} >Tela de Grupos</p>
 
-            <Button href='/' variant='contained' color='secondary' >Logout</Button>
-
+            <Button href='/' variant='contained' color='secondary' > <LogoutIcon /> Logout</Button>
+            
+            <p> <AddCircleOutlineIcon/> </p>
             <div>
                 { grupos.map( (item, key) => {
                     return (
@@ -32,6 +39,8 @@ const Grupo = () => {
                                 <p style={{fontSize: 22}}> Grupo </p>
                                 <p> Nome: { item.nome } </p>
                                 <p> Descrição: { item.descricao } </p>
+                                <p> <TextSnippetIcon /> <EditIcon /> <RemoveCircleOutlineIcon /> </p>
+
                             </div>
                             
                         </Card>
