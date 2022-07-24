@@ -20,6 +20,8 @@ const Grupo = () => {
 
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
+    const [meta, setMeta] = useState('');
+    const [imagem, setImagem] = useState('');
 
     
     const obterGrupos = async () => {
@@ -51,15 +53,15 @@ const Grupo = () => {
 
     const handleInsert = async () => {
         try {
-            console.log('Fechando');
             const urlPost = 'https://open-grupos-estudo-backend.herokuapp.com/grupo';
             await axios.post(urlPost, {
-                "nome": "Nome5",
-                "descricao": "Descricao5",
-                "meta": "Meta5",
-                "imagem": "Imagem5"
+                nome,
+                descricao,
+                meta,
+                imagem
             });
             handleClose();
+            await obterGrupos();
         } catch (error) {
             
         }
