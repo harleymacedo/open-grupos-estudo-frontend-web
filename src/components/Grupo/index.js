@@ -17,6 +17,10 @@ const Grupo = () => {
 
     const [grupos, setGrupos] = useState([]);
     const [open, setOpen] = useState(false);
+
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
+
     
     const obterGrupos = async () => {
         const result = await axios.get('https://open-grupos-estudo-backend.herokuapp.com/grupo');
@@ -37,6 +41,31 @@ const Grupo = () => {
         setOpen(false);
     };
 
+    const handleSetNome = (e) => {
+        setNome(e.target.value);
+    }
+
+    const handleSetDescricao = (e) => {
+        setDescricao(e.target.value);
+    }
+
+    const handleInsert = async () => {
+        try {
+            console.log('Fechando');
+            const urlPost = 'https://open-grupos-estudo-backend.herokuapp.com/grupo';
+            await axios.post(urlPost, {
+                "nome": "Nome5",
+                "descricao": "Descricao5",
+                "meta": "Meta5",
+                "imagem": "Imagem5"
+            });
+            handleClose();
+        } catch (error) {
+            
+        }
+
+    }
+
     return (
         <div className='container'>
             <p style={{fontSize: 28}} >Tela de Grupos</p>
@@ -48,14 +77,14 @@ const Grupo = () => {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Novo grupo:</DialogTitle>
                 <DialogContent>
-                    <TextField id="name" label="Nome:" type="text" fullWidth variant='filled' />
-                    <TextField id="descricao" label="Descrição:" type="text" fullWidth variant='filled' />
-                    <TextField id="meta" label="Meta:" type="text" fullWidth variant='filled' />
-                    <TextField id="imagem" label='Imagem:' type="file" fullWidth variant='filled' />
+                    <TextField id="name" label="Nome:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetNome} />
+                    <TextField id="descricao" label="Descrição:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetDescricao} />
+                    <TextField id="meta" label="Meta:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} />
+                    <TextField id="imagem" type="file" fullWidth variant='filled' style={{marginBottom: 10}} />
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleClose}> Cancelar </Button>
-                <Button onClick={handleClose}> Cadastrar </Button>
+                <Button onClick={handleClose} variant='contained' color='error' > Cancelar </Button>
+                <Button onClick={handleInsert} variant='contained' color='primary'> Cadastrar </Button>
                 </DialogActions>
             </Dialog>
 
