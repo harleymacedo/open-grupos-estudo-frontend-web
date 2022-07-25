@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
-import { Card, Button, TextField } from '@mui/material';
+import { Card, Button, TextField, Hidden } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -16,7 +16,8 @@ import axios from 'axios';
 const Grupo = () => {
 
     const [grupos, setGrupos] = useState([]);
-    const [open, setOpen] = useState(false);
+    const [openDialogInsert, setDialogInsert] = useState(false);
+    const [openDialogEdit, setDialogEdit] = useState(false);
 
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -35,14 +36,6 @@ const Grupo = () => {
         obterGrupos();
     }, [] );
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     const handleSetNome = (e) => {
         setNome(e.target.value);
     }
@@ -60,12 +53,16 @@ const Grupo = () => {
                 meta,
                 imagem
             });
-            handleClose();
+            setDialogInsert(false);
             await obterGrupos();
         } catch (error) {
-            
+            console.log('Inserir alert');
         }
+    }
 
+    const handleEdit = (e) => {
+        console.log(e.target.id);
+        setDialogEdit(false);
     }
 
     return (
@@ -74,10 +71,10 @@ const Grupo = () => {
 
             <Button href='/' variant='contained' color='secondary' > <LogoutIcon /> Logout</Button>
             
-            <p> <AddCircleOutlineIcon onClick={handleClickOpen}/> </p>
+            <p> <AddCircleOutlineIcon onClick={ () => {setDialogInsert(true)} }/> </p>
 
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Novo grupo:</DialogTitle>
+            <Dialog open={openDialogInsert} onClose={ () => {setDialogInsert(false)} }>
+                <DialogTitle> <AddCircleOutlineIcon /> Novo grupo:</DialogTitle>
                 <DialogContent>
                     <TextField id="name" label="Nome:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetNome} />
                     <TextField id="descricao" label="Descrição:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetDescricao} />
@@ -85,8 +82,22 @@ const Grupo = () => {
                     <TextField id="imagem" type="file" fullWidth variant='filled' style={{marginBottom: 10}} />
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleClose} variant='contained' color='error' > Cancelar </Button>
-                <Button onClick={handleInsert} variant='contained' color='primary'> Cadastrar </Button>
+                <Button onClick={ () => {setDialogInsert(false)} } variant='contained' color='error' > Cancelar </Button>
+                <Button onClick={ handleInsert } variant='contained' color='primary'> Cadastrar </Button>
+                </DialogActions>
+            </Dialog>
+
+            <Dialog open={openDialogEdit} onClose={() => {setDialogEdit(false)}}>
+                <DialogTitle> <EditIcon /> Editar grupo:</DialogTitle>
+                <DialogContent>
+                    <TextField id="name" label="Nome:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetNome} />
+                    <TextField id="descricao" label="Descrição:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} onChange={handleSetDescricao} />
+                    <TextField id="meta" label="Meta:" type="text" fullWidth variant='filled' style={{marginBottom: 10}} />
+                    <TextField id="imagem" type="file" fullWidth variant='filled' style={{marginBottom: 10}} />
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={ () => {setDialogEdit(false)} } variant='contained' color='error' > Cancelar </Button>
+                <Button onClick={ handleEdit } variant='contained' color='primary'> Atualizar </Button>
                 </DialogActions>
             </Dialog>
 
@@ -98,7 +109,8 @@ const Grupo = () => {
                                 <p style={{fontSize: 22}}> Grupo </p>
                                 <p> Nome: { item.nome } </p>
                                 <p> Descrição: { item.descricao } </p>
-                                <p> <TextSnippetIcon /> <EditIcon /> <RemoveCircleOutlineIcon /> </p>
+                                <hidden id={ item._id } value={ item._id } />
+                                <p> <TextSnippetIcon /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon /> </p>
 
                             </div>
                             
