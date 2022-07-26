@@ -101,7 +101,7 @@ const Grupo = () => {
                 </DialogActions>
             </Dialog>
 
-            <div>
+            <div className="div--cards">
                 { grupos.map( (item, key) => {
                     return (
                         <Card variant='outlined' style={{backgroundColor: 'silver', margin: 20, width: 300}}>
