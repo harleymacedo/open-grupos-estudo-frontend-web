@@ -69,9 +69,9 @@ const Grupo = () => {
         <div className='container'>
             <p style={{fontSize: 28}} >Tela de Grupos</p>
 
-            <Button href='/' variant='contained' color='secondary' > <LogoutIcon /> Logout</Button>
+            <p style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', margin: 20 }}><Button href='/' variant='contained' color='secondary' style={{ width: 100 }} > <LogoutIcon /> Logout</Button></p>
             
-            <p> <AddCircleOutlineIcon onClick={ () => {setDialogInsert(true)} }/> </p>
+            <p> <Button variant='contained' color='primary' onClick={ () => {setDialogInsert(true)} } > <AddCircleOutlineIcon /> Novo </Button> </p>
 
             <Dialog open={openDialogInsert} onClose={ () => {setDialogInsert(false)} }>
                 <DialogTitle> <AddCircleOutlineIcon /> Novo grupo:</DialogTitle>
@@ -106,9 +106,8 @@ const Grupo = () => {
                     return (
                         <Card variant='outlined' style={{backgroundColor: 'silver', margin: 20, width: 300}}>
                             <div key={key}>
-                                <p style={{fontSize: 22}}> Grupo </p>
-                                <p> Nome: { item.nome } </p>
-                                <p> Descrição: { item.descricao } </p>
+                                <p> <span style={{fontWeight: 'bold'}}> Nome: </span> { item.nome } </p>
+                                <p> <span style={{fontWeight: 'bold'}}> Descrição: </span> { item.descricao } </p>
                                 <hidden id={ item._id } value={ item._id } />
                                 <p> <TextSnippetIcon /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon /> </p>
 
