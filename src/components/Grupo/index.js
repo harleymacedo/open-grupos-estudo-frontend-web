@@ -71,7 +71,9 @@ const Grupo = () => {
             const _idDelete = e.target.id;
             console.log('Deletando o grupo: ' + _idDelete);
             await axios.delete(urlDelete, {
-                _id: _idDelete
+                data: {
+                    _id: _idDelete
+                }
             });
             await obterGrupos();
         } catch (error) {
