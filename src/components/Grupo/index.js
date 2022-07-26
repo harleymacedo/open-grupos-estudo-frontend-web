@@ -65,6 +65,20 @@ const Grupo = () => {
         setDialogEdit(false);
     }
 
+    const handleDelete = async (e) => {
+        try {
+            const urlDelete = 'https://open-grupos-estudo-backend.herokuapp.com/grupo';
+            const _idDelete = e.target.id;
+            console.log('Deletando o grupo: ' + _idDelete);
+            await axios.delete(urlDelete, {
+                _id: _idDelete
+            });
+            await obterGrupos();
+        } catch (error) {
+            console.log('Inserir alert');
+        }
+    }
+
     return (
         <div className='container'>
             <p style={{fontSize: 28}} >Tela de Grupos</p>
@@ -109,7 +123,7 @@ const Grupo = () => {
                                 <p> <span style={{fontWeight: 'bold'}}> Nome: </span> { item.nome } </p>
                                 <p> <span style={{fontWeight: 'bold'}}> Descrição: </span> { item.descricao } </p>
                                 <hidden id={ item._id } value={ item._id } />
-                                <p> <TextSnippetIcon /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon /> </p>
+                                <p> <TextSnippetIcon /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon onClick={ handleDelete } id={item._id} /> </p>
 
                             </div>
                             
