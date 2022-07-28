@@ -18,6 +18,7 @@ const Grupo = () => {
     const [grupos, setGrupos] = useState([]);
     const [openDialogInsert, setDialogInsert] = useState(false);
     const [openDialogEdit, setDialogEdit] = useState(false);
+    const [openDialogDetalhes, setDialogDetalhes] = useState(false);
 
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -117,6 +118,17 @@ const Grupo = () => {
                 </DialogActions>
             </Dialog>
 
+            <Dialog open={openDialogDetalhes} onClose={() => {setDialogDetalhes(false)}}>
+                <DialogTitle> <EditIcon /> Detalhes do grupo:</DialogTitle>
+                <DialogContent>
+                    <p> Descrição: </p>
+                    <p> Meta: </p>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={ () => {setDialogDetalhes(false)} } variant='contained' color='error' > Fechar </Button>
+                </DialogActions>
+            </Dialog>
+
             <div className="div--cards">
                 { grupos.map( (item, key) => {
                     return (
@@ -125,7 +137,7 @@ const Grupo = () => {
                                 <p> <span style={{fontWeight: 'bold'}}> Nome: </span> { item.nome } </p>
                                 <p> <span style={{fontWeight: 'bold'}}> Descrição: </span> { item.descricao } </p>
                                 <hidden id={ item._id } value={ item._id } />
-                                <p> <TextSnippetIcon /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon onClick={ handleDelete } id={item._id} /> </p>
+                                <p> <TextSnippetIcon onClick={ () => {setDialogDetalhes(true)} } id={ item._id } /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon onClick={ handleDelete } id={item._id} /> </p>
 
                             </div>
                             
