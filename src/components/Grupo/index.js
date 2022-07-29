@@ -19,6 +19,7 @@ const Grupo = () => {
     const [openDialogInsert, setDialogInsert] = useState(false);
     const [openDialogEdit, setDialogEdit] = useState(false);
     const [openDialogDetalhes, setDialogDetalhes] = useState(false);
+    const [grupoAtual, setGrupoAtual] = useState({});
 
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -82,6 +83,13 @@ const Grupo = () => {
         }
     }
 
+    const openDetalhes = (e) => {
+        console.log('Id: ' + e.target.id);
+        const grupoBuscado = grupos.filter( (elemento) => {return elemento._id === e.target.id} );
+        setGrupoAtual(grupoBuscado);
+        setDialogDetalhes(true);
+    }
+
     return (
         <div className='container'>
             <p style={{fontSize: 28}} >Tela de Grupos</p>
@@ -121,8 +129,8 @@ const Grupo = () => {
             <Dialog open={openDialogDetalhes} onClose={() => {setDialogDetalhes(false)}}>
                 <DialogTitle> <EditIcon /> Detalhes do grupo:</DialogTitle>
                 <DialogContent>
-                    <p> Descrição: </p>
-                    <p> Meta: </p>
+                    <p> Descrição: {grupoAtual.descricao} </p>
+                    <p> Meta: {grupoAtual.meta} </p>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={ () => {setDialogDetalhes(false)} } variant='contained' color='error' > Fechar </Button>
@@ -137,7 +145,7 @@ const Grupo = () => {
                                 <p> <span style={{fontWeight: 'bold'}}> Nome: </span> { item.nome } </p>
                                 <p> <span style={{fontWeight: 'bold'}}> Descrição: </span> { item.descricao } </p>
                                 <hidden id={ item._id } value={ item._id } />
-                                <p> <TextSnippetIcon onClick={ () => {setDialogDetalhes(true)} } id={ item._id } /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon onClick={ handleDelete } id={item._id} /> </p>
+                                <p> <TextSnippetIcon onClick={openDetalhes} id={ item._id } /> <EditIcon onClick={ () => {setDialogEdit(true)} } id={ item._id } /> <RemoveCircleOutlineIcon onClick={ handleDelete } id={item._id} /> </p>
 
                             </div>
                             
