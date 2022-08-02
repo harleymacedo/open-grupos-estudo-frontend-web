@@ -129,7 +129,7 @@ const Grupo = () => {
             </Dialog>
 
             <Dialog open={openDialogDetalhes} onClose={() => {setDialogDetalhes(false)}}>
-                <DialogTitle> <EditIcon /> Detalhes do grupo:</DialogTitle>
+                <DialogTitle> <TextSnippetIcon /> Detalhes do grupo:</DialogTitle>
                 <DialogContent>
                     <p> Descrição: {grupoAtual.descricao} </p>
                     <p> Meta: {grupoAtual.meta} </p>
