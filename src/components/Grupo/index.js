@@ -19,7 +19,7 @@ const Grupo = () => {
     const [openDialogInsert, setDialogInsert] = useState(false);
     const [openDialogEdit, setDialogEdit] = useState(false);
     const [openDialogDetalhes, setDialogDetalhes] = useState(false);
-    const [grupoAtual, setGrupoAtual] = useState({});
+    const [grupoAtual, setGrupoAtual] = useState({descricao: 'Descricao0', meta: 'meta0'});
 
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -85,7 +85,9 @@ const Grupo = () => {
 
     const openDetalhes = (e) => {
         console.log('Id: ' + e.target.id);
-        const grupoBuscado = grupos.filter( (elemento) => {return elemento._id === e.target.id} );
+        const grupoBuscadoIndex = grupos.findIndex( (elemento) => {return elemento._id === e.target.id} ) ;
+        const grupoBuscado = grupos[grupoBuscadoIndex];
+        console.log(grupoBuscado);
         setGrupoAtual(grupoBuscado);
         setDialogDetalhes(true);
     }
